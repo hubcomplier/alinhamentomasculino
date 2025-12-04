@@ -12,7 +12,7 @@
         :root {
             --bg: #000000;
             --obsidian: #0a0a0a;
-            --gold: #B8860B;          /* Ouro envelhecido */
+            --gold: #B8860B;
             --bronze: #CD7F32;
             --blood: #8B0000;
             --steel: #2C2C2C;
@@ -53,7 +53,7 @@
             letter-spacing: 1px;
         }
 
-        .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
 
         /* BOTÃO DE GUERREIRO */
         .btn-warrior {
@@ -213,7 +213,7 @@
             line-height: 1.8;
         }
 
-        /* Yan Simon */
+        /* Yan Simon Section */
         .kael-section {
             padding: 140px 0;
             background: linear-gradient(180deg, #000 0%, #0a0000 100%);
@@ -224,14 +224,23 @@
         .kael-layout {
             display: flex;
             align-items: center;
-            gap: 80px;
+            gap: 60px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        /* MEDIA CONTAINER (IMAGEM + VÍDEO) */
+        .media-container {
+            display: flex;
+            align-items: center;
+            gap: 30px;
             flex-wrap: wrap;
             justify-content: center;
         }
 
         .kael-img {
-            width: 380px;
-            height: 520px;
+            width: 300px;
+            height: 420px;
             object-fit: cover;
             filter: grayscale(80%) contrast(1.3) brightness(0.9);
             transition: 0.7s;
@@ -243,6 +252,37 @@
             filter: grayscale(0%) contrast(1.2);
             box-shadow: 0 0 80px rgba(184,134,11,0.8);
             transform: scale(1.02);
+        }
+
+        /* VÍDEO ESTILIZADO */
+        .kael-video-container {
+            position: relative;
+        }
+
+        .kael-video {
+            width: 300px;
+            height: 420px;
+            object-fit: cover;
+            border: 3px solid var(--gold);
+            box-shadow: 0 0 40px rgba(184,134,11,0.4);
+            transition: 0.7s;
+            background: #000;
+        }
+
+        .kael-video:hover {
+            box-shadow: 0 0 80px rgba(184,134,11,0.8);
+            transform: scale(1.02);
+        }
+
+        .video-label {
+            text-align: center;
+            margin-top: 15px;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--gold);
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
         }
 
         /* PREÇO MASCULINO */
@@ -272,9 +312,34 @@
         .price-box::before { top: -15px; left: -15px; border-right: none; border-bottom: none; }
         .price-box::after { bottom: -15px; right: -15px; border-left: none; border-top: none; }
 
+        /* RESPONSIVO */
+        @media (max-width: 992px) {
+            .kael-layout {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .media-container {
+                flex-direction: column;
+            }
+        }
+
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.8rem; }
-            .kael-img { width: 300px; height: 420px; }
+            .kael-img, .kael-video { 
+                width: 280px; 
+                height: 380px; 
+            }
+            .media-container {
+                gap: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .kael-img, .kael-video { 
+                width: 250px; 
+                height: 340px; 
+            }
         }
     </style>
 </head>
@@ -298,7 +363,7 @@
         </div>
     </section>
 
-    <!-- TRILHA DO GUARDIÃO-->
+    <!-- TRILHA DO GUARDIÃO -->
     <section class="steps-section">
         <div class="container">
             <h2 style="text-align: center; margin-bottom: 30px; font-size: 2.5rem;">A Iniciação</h2>
@@ -328,11 +393,36 @@
 
     <!-- Yan Simon -->
     <section class="kael-section">
-        <div class="container yan-layout">
-            <img src="https://i.ibb.co/r23S97Zw/Whats-App-Image-2025-11-26-at-13-20-51.jpg" alt="Whats-App-Image-2025-11-26-at-13-20-51" border="0">
-            <div style="max-width: 550px;">
+        <div class="container kael-layout">
+            
+            <!-- CONTAINER COM IMAGEM E VÍDEO LADO A LADO -->
+            <div class="media-container">
+                <!-- Imagem do Yan Simon -->
+                <div>
+                    <img class="kael-img" src="https://i.ibb.co/r23S97Zw/Whats-App-Image-2025-11-26-at-13-20-51.jpg" alt="Yan Simon - O Guardião do Fogo">
+                </div>
+                
+                <!-- Vídeo ao lado -->
+                <div class="kael-video-container">
+                    <video 
+                        class="kael-video" 
+                        autoplay 
+                        loop 
+                        muted 
+                        playsinline
+                        poster="https://i.ibb.co/r23S97Zw/Whats-App-Image-2025-11-26-at-13-20-51.jpg"
+                    >
+                        <source src="https://res.cloudinary.com/dlueoyrhe/video/upload/v1764808918/generated_video_4_bd2ivx.mp4" type="video/mp4">
+                        Seu navegador não suporta vídeos.
+                    </video>
+                    <p class="video-label">⚔ A Convocação ⚔</p>
+                </div>
+            </div>
+            
+            <!-- Texto sobre Yan Simon -->
+            <div style="max-width: 450px;">
                 <div class="italic">O Guardião do Fogo</div>
-                <h2 style="font-size: 3rem; margin: 15px 0; color: var(--gold);">Yan Simon</h2>
+                <h2 style="font-size: 2.8rem; margin: 15px 0; color: var(--gold);">Yan Simon</h2>
                 <p style="color: #ccc; margin-bottom: 25px; font-size: 1.1rem; line-height: 1.9;">
                     Mestre de iniciações masculinas e portador da linhagem do fogo sagrado. Yan forjou uma metodologia implacável que une o poder ancestral das ordens guerreiras com a precisão da engenharia quântica.
                 </p>
@@ -359,7 +449,7 @@
                 </a>
 
                 <p style="margin-top: 30px; font-size: 0.9rem; color: var(--bronze);">
-                    *Horário marcado após confirmação — apenas para quem está pronto
+                    *Horário marcado após confirmação, apenas para quem está pronto.
                 </p>
             </div>
         </div>
@@ -370,7 +460,7 @@
         <p style="font-size: 1.8rem; color: var(--gold); margin-bottom: 10px; letter-spacing: 5px;">YAN SIMON</p>
         <p style="font-size: 0.9rem; color: #888;">© 2024 • Irmandade do Fogo Sagrado</p>
         <p style="margin-top: 20px; font-style: italic; color: var(--bronze);">
-            “O homem não nasce rei. Ele se torna.”
+            "O homem não nasce rei. Ele se torna."
         </p>
     </footer>
 
